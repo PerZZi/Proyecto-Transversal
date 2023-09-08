@@ -5,6 +5,9 @@
  */
 package proyectotransversal;
 
+import java.sql.Connection;
+import proyectotransversal.AccesoDatos.Conexion;
+
 /**
  *
  * @author Usuario
@@ -15,7 +18,8 @@ public class ProyectoTransversal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        Connection con=Conexion.getConnection();
     }
     
 }
