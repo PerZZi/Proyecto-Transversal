@@ -12,11 +12,13 @@ import proyectotransversal.AccesoDatos.AlumnoData;
 import proyectotransversal.AccesoDatos.Conexion;
 import proyectotransversal.entidades.Alumno;
 
+
 /**
  *
  * @author Usuario
  */
 public class ProyectoTransversal {
+    
 
     /**
      * @param args the command line arguments
