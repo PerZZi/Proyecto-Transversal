@@ -27,7 +27,7 @@ public class ProyectoTransversal {
         
         Connection con=Conexion.getConnection();
         
-        Alumno alumno1=new Alumno(45789365,"Fernandez"," Esteban Matias",LocalDate.of(2001, 7, 15),true);
+        Alumno alumno1=new Alumno(45789365,"Fernandez"," esteban Matias",LocalDate.of(2001, 7, 15),true);
         AlumnoData alu1=new AlumnoData();
 //        alu1.guardarAlumno(alumno1);
         alu1.modificarAlumno(alumno1);
