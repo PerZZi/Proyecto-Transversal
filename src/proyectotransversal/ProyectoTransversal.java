@@ -24,10 +24,15 @@ public class ProyectoTransversal {
         
         Connection con=Conexion.getConnection();
         
-        Alumno alumno1=new Alumno(4578565,"Suarez","Martin",LocalDate.of(2001, 7, 15),true);
-        AlumnoData alu1=new AlumnoData();
-        alu1.guardarAlumno(alumno1);
+        //Alumno alumno1=new Alumno(4578565,"Suarez","Martin",LocalDate.of(2001, 7, 15),true);
+        //AlumnoData alu1=new AlumnoData();
+        //alu1.guardarAlumno(alumno1);
+        
+        Alumno alumno2=new Alumno(50123456,"Vera","Roxana",LocalDate.of(2010, 12, 5),true);
+        AlumnoData alu2=new AlumnoData();
+        alu2.guardarAlumno(alumno2);
 
+        
 
 
 
