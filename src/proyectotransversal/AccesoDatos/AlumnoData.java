@@ -65,39 +65,27 @@ public class AlumnoData {
         }
     }
 
-    
+    public void eliminarAlumno(int id) {
 
-    public void eliminarAlumno(int id){
-        
-    
-    
         try {
-            
-              String sql="UPDATE alumno SET activo= 0 where idAlumno = ?";  
-            
-            PreparedStatement ps=con.prepareStatement(sql);
+            String sql = "UPDATE alumno SET activo= 0 where idAlumno = ?";
+
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ps.executeUpdate();
-            int elimino=ps.executeUpdate();
-            
-            if(elimino==1){
-                
-            JOptionPane.showMessageDialog(null, "Alumno Eliminado");
-            
+            int elimino = ps.executeUpdate();
+
+            if (elimino == 1) {
+
+                JOptionPane.showMessageDialog(null, "Alumno Eliminado");
+
             }
-                    
-           ps.close();
-                    
+            ps.close();
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla alumno");
-            
-            
+
         }
     }
-    
-    
-    
-    
-    
-    
+
 }

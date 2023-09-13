@@ -19,19 +19,12 @@ public class ProyectoTransversal {
         
 
         Alumno alumno1=new Alumno(18, 4296545,"Fernandez","Mateo",LocalDate.of(2000, 8, 20),true);
-        Alumno alumno2=new Alumno(15, 4569874,"Dorregaray","Lucio",LocalDate.of(2003, 6, 10),true);
+        Alumno alumno2=new Alumno(15, 4569874,"Dorregaray","esteban",LocalDate.of(2003, 6, 10),true);
         AlumnoData alu1=new AlumnoData();
         AlumnoData alu2=new AlumnoData();
         //alu1.guardarAlumno(alumno1);
         //alu2.guardarAlumno(alumno2);
-<<<<<<< HEAD
         //alu1.modificarAlumno(alumno1);
         //alu2.modificarAlumno(alumno2);
-
-=======
-//        alu1.modificarAlumno(alumno1);
-//        alu2.modificarAlumno(alumno2);
-        alu1.eliminarAlumno(1);
->>>>>>> ec82bb76e2720030b7247706bbefeba6616ed51d
     }
 }
