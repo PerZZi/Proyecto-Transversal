@@ -24,8 +24,14 @@ public class ProyectoTransversal {
         AlumnoData alu2=new AlumnoData();
         //alu1.guardarAlumno(alumno1);
         //alu2.guardarAlumno(alumno2);
+<<<<<<< HEAD
         //alu1.modificarAlumno(alumno1);
         //alu2.modificarAlumno(alumno2);
 
+=======
+//        alu1.modificarAlumno(alumno1);
+//        alu2.modificarAlumno(alumno2);
+        alu1.eliminarAlumno(1);
+>>>>>>> ec82bb76e2720030b7247706bbefeba6616ed51d
     }
 }
