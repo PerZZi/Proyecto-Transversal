@@ -26,5 +26,8 @@ public class ProyectoTransversal {
         //alu2.guardarAlumno(alumno2);
         //alu1.modificarAlumno(alumno1);
         //alu2.modificarAlumno(alumno2);
+        Alumno alumnoEncontrado= alu1.buscarAlumno(15);
+        System.out.println("DNI " + alumnoEncontrado.getDni());
+        System.out.println("Apellido " + alumnoEncontrado.getApellido());
     }
 }

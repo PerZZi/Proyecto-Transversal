@@ -87,5 +87,36 @@ public class AlumnoData {
 
         }
     }
-
+    
+    public Alumno buscarAlumno (int id){
+    
+    String sql="SELECT dni, apellido, nombre, fechaNacimiento FROM alumno WHERE idAlumno = ? AND activo= 1";
+        
+    Alumno alumno=null;
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs=ps.executeQuery();
+            
+            if(rs.next()){  
+                alumno=new Alumno(); 
+                alumno.setIdAlumno(id);
+                alumno.setDni(rs.getInt("DNI"));
+                alumno.setApellido(rs.getString("apellido"));
+                alumno.setNombre(rs.getNString("nombre"));
+                alumno.setFechaNaci(rs.getDate("FechadeNacimiento").toLocalDate());
+                alumno.setActivo(true);
+            } else {
+            JOptionPane.showMessageDialog(null, " No existe ese alumno "); 
+            
+            }
+           ps.close();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al accder a la tabla " + ex.getMessage());
+        
+        }
+        
+        return alumno;
+    }
 }
