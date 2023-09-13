@@ -24,7 +24,7 @@ public class ProyectoTransversal {
         //alu1.guardarAlumno(alumno1);
         //alu2.guardarAlumno(alumno2);
         //alu1.modificarAlumno(alumno1);
-        alu2.modificarAlumno(alumno2);
+        //alu2.modificarAlumno(alumno2);
 
     }
 }
