@@ -18,10 +18,10 @@ public class ProyectoTransversal {
         Connection con=Conexion.getConnection();
         
 
-        Alumno alumno1=new Alumno(18, 4296545,"Fernandez","Mateo",LocalDate.of(2000, 8, 20),true);
-        Alumno alumno2=new Alumno(15, 4569874,"Dorregaray","esteban",LocalDate.of(2003, 6, 10),true);
+        //Alumno alumno1=new Alumno(18, 4296545,"Fernandez","Mateo",LocalDate.of(2000, 8, 20),true);
+        //Alumno alumno2=new Alumno(15, 4569874,"Dorregaray","esteban",LocalDate.of(2003, 6, 10),true);
         AlumnoData alu1=new AlumnoData();
-        AlumnoData alu2=new AlumnoData();
+        //AlumnoData alu2=new AlumnoData();
         //alu1.guardarAlumno(alumno1);
         //alu2.guardarAlumno(alumno2);
         //alu1.modificarAlumno(alumno1);
@@ -29,5 +29,13 @@ public class ProyectoTransversal {
         Alumno alumnoEncontrado= alu1.buscarAlumnoPorDni(4296545);
         System.out.println("DNI " + alumnoEncontrado.getDni());
         System.out.println("Apellido " + alumnoEncontrado.getApellido());
+        
+//        AlumnoData alu=new AlumnoData();
+//        for (Alumno alumno:alu.ListarAlumnos()) {
+//            System.out.println(alumno.getDni());
+//            System.out.println(alumno.getApellido());
+//            System.out.println(alumno.getNombre());
+//            System.out.println(alumno.getFechaNaci());
+        }
     }
-}
+
