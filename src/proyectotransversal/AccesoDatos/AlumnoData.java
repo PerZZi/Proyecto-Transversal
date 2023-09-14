@@ -106,7 +106,7 @@ public class AlumnoData {
                 alumno.setDni(rs.getInt("DNI"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getNString("nombre"));
-                alumno.setFechaNaci(rs.getDate("FechadeNacimiento").toLocalDate());
+                alumno.setFechaNaci(rs.getDate("fechaNacimiento").toLocalDate());
                 alumno.setActivo(true);
             } else {
                 JOptionPane.showMessageDialog(null, " No existe ese alumno ");                
@@ -138,7 +138,7 @@ public class AlumnoData {
                 alumno.setDni(rs.getInt("DNI"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getNString("nombre"));
-                alumno.setFechaNaci(rs.getDate("FechadeNacimiento").toLocalDate());
+                alumno.setFechaNaci(rs.getDate("fechaNacimiento").toLocalDate());
                 alumno.setActivo(true);
             } else {
                 JOptionPane.showMessageDialog(null, " No existe ese alumno ");                
@@ -170,7 +170,7 @@ public class AlumnoData {
                 alumno.setDni(rs.getInt("DNI"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getNString("nombre"));
-                alumno.setFechaNaci(rs.getDate("FechaNacimiento").toLocalDate());
+                alumno.setFechaNaci(rs.getDate("fechaNacimiento").toLocalDate());
                 alumno.setActivo(true);
                 
                 alumnos.add(alumno);

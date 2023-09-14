@@ -36,6 +36,6 @@ public class ProyectoTransversal {
 //            System.out.println(alumno.getApellido());
 //            System.out.println(alumno.getNombre());
 //            System.out.println(alumno.getFechaNaci());
-        }
+//        }
     }
-
+}
