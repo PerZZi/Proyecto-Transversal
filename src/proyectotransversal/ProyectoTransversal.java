@@ -9,8 +9,10 @@ import java.sql.Connection;
 import java.time.LocalDate;
 import proyectotransversal.AccesoDatos.AlumnoData;
 import proyectotransversal.AccesoDatos.Conexion;
+import proyectotransversal.AccesoDatos.InscripcionData;
 import proyectotransversal.AccesoDatos.MateriaData;
 import proyectotransversal.entidades.Alumno;
+import proyectotransversal.entidades.Inscripcion;
 import proyectotransversal.entidades.Materia;
 
 public class ProyectoTransversal {
@@ -37,18 +39,28 @@ public class ProyectoTransversal {
         //System.out.println(alumno.getNombre());
         //System.out.println(alumno.getFechaNaci());
         
-        Materia materia1 = new Materia("Matematica",2022,true);
-        Materia materia2=new Materia("Lengua",2021,true);
-        MateriaData mate1=new MateriaData();
-        MateriaData mate2=new MateriaData();
+        //Materia materia1 = new Materia("Matematica",2022,true);
+        //Materia materia2=new Materia(3,"Ciencia",2022,true);
+        //MateriaData mate1=new MateriaData();
+        //MateriaData mate2=new MateriaData();
         //mate1.guardarMateria(materia1);
         //mate2.guardarMateria(materia2);
         //mate1.buscarMateria(5);
-        mate1.eliminarMateria(5);
+        //mate1.eliminarMateria(5);
+        //mate1.modificarMateria(materia2);
         
-        for (Materia materia:mate1.ListarMaterias()) {
-            System.out.println(materia.getNombre());
-            System.out.println(materia.getAño());
-        }
+//        for (Materia materia:mate1.ListarMaterias()) {
+//            System.out.println(materia.getNombre());
+//            System.out.println(materia.getAño());
+      //}
+      
+      AlumnoData alu1=new AlumnoData();
+      MateriaData mate1=new MateriaData();
+      InscripcionData id=new InscripcionData();
+      Alumno ricardo=alu1.buscarAlumno(20);
+      Materia ciencia=mate1.buscarMateria(3);
+      Inscripcion ins=new Inscripcion(ricardo,ciencia,9);
+      id.guardarInscripcion(ins);
+
     }
 }

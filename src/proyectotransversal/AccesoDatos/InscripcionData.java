@@ -16,24 +16,25 @@ public class InscripcionData {
     private Connection con=null;
 
     public InscripcionData() {
-        this.con=Conexion.getConnection();
+        con = Conexion.getConnection();
     }
     
     
     public void guardarInscripcion(Inscripcion inscripcion){
         
-        String sql="INSERT TO inscripcion(idAlumno, idMateria, nota) VALUES (?, ?, ?)";
+        String sql="INSERT INTO inscripcion(idAlumno, idMateria, nota) VALUES (?, ?, ?, ?)";
         
         try {
             PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1,inscripcion.getAlumno().getIdAlumno());
             ps.setInt(2, inscripcion.getMateria().getIdMateria());
             ps.setDouble(3, inscripcion.getNota());
+            ps.setInt(4, inscripcion.getIdInscripcion());
             ps.executeUpdate();
             ResultSet rs= ps.getGeneratedKeys();
             if(rs.next()){
                 
-                inscripcion.setIdInscripcion(rs.getInt(1));
+                inscripcion.setIdInscripcion(rs.getInt("idInscripto"));
                 JOptionPane.showMessageDialog(null, "inscripcion exitosa");
             }
             
