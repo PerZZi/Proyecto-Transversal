@@ -37,11 +37,13 @@ public class ProyectoTransversal {
         //System.out.println(alumno.getNombre());
         //System.out.println(alumno.getFechaNaci());
         
-        Materia materia1 = new Materia("Matematica",2020,true);
+        Materia materia1 = new Materia("Matematica",2022,true);
         Materia materia2=new Materia("Lengua",2021,true);
         MateriaData mate1=new MateriaData();
         MateriaData mate2=new MateriaData();
+        //mate1.guardarMateria(materia1);
+        //mate2.guardarMateria(materia2);
+        //mate1.buscarMateria(5);
         mate1.guardarMateria(materia1);
-        mate2.guardarMateria(materia2);
     }
 }
