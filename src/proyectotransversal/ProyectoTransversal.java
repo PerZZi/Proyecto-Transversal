@@ -44,6 +44,11 @@ public class ProyectoTransversal {
         //mate1.guardarMateria(materia1);
         //mate2.guardarMateria(materia2);
         //mate1.buscarMateria(5);
-        mate1.guardarMateria(materia1);
+        //mate1.guardarMateria(materia1);
+        
+        for (Materia materia:mate1.ListarMaterias()) {
+            System.out.println(materia.getNombre());
+            System.out.println(materia.getAño());
+        }
     }
 }
