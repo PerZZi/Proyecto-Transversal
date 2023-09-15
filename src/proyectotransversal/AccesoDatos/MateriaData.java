@@ -93,6 +93,23 @@ public class MateriaData {
         }
     }
      
+     public void eliminarMateria(int idMateria) {
+
+        try {
+            String sql = "UPDATE materia SET estado = 0 WHERE idMateria = ? ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idMateria);
+            int materia = ps.executeUpdate();
+
+            if (materia == 1) {
+                JOptionPane.showMessageDialog(null, " Se eliminó la Materia.");
+            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, " Error al intentar eliminar la Materia");
+        }
+    }
+     
      public List<Materia> ListarMaterias() {
         
         String sql = "SELECT idMateria, nombre, año, estado  FROM materia WHERE estado= 1";
