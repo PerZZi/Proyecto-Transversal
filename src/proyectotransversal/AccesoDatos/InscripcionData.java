@@ -22,15 +22,15 @@ public class InscripcionData {
     
     public void guardarInscripcion(Inscripcion inscripcion){
         
-        String sql="INSERT INTO inscripcion(idAlumno, idMateria, nota) VALUES (?, ?, ?, ?)";
+        String sql="INSERT INTO inscripcion (nota, idAlumno, idMateria) VALUES (?,?,?)";
         
         try {
             PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1,inscripcion.getAlumno().getIdAlumno());
-            ps.setInt(2, inscripcion.getMateria().getIdMateria());
-            ps.setDouble(3, inscripcion.getNota());
-            ps.setInt(4, inscripcion.getIdInscripcion());
+            ps.setDouble(1, inscripcion.getNota());
+            ps.setInt(2,inscripcion.getAlumno().getIdAlumno());
+            ps.setInt(3, inscripcion.getMateria().getIdMateria());
             ps.executeUpdate();
+            
             ResultSet rs= ps.getGeneratedKeys();
             if(rs.next()){
                 
