@@ -13,7 +13,7 @@ import proyectotransversal.entidades.Inscripcion;
 
 public class InscripcionData {
     
-    private Connection con=null;
+    private Connection con = null;
 
     public InscripcionData() {
         con = Conexion.getConnection();
@@ -27,14 +27,14 @@ public class InscripcionData {
         try {
             PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.setDouble(1, inscripcion.getNota());
-            ps.setInt(2,inscripcion.getAlumno().getIdAlumno());
+            ps.setInt(2, inscripcion.getAlumno().getIdAlumno());
             ps.setInt(3, inscripcion.getMateria().getIdMateria());
             ps.executeUpdate();
             
             ResultSet rs= ps.getGeneratedKeys();
             if(rs.next()){
                 
-                inscripcion.setIdInscripcion(rs.getInt("idInscripto"));
+                inscripcion.setIdInscripcion(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "inscripcion exitosa");
             }
             
@@ -44,4 +44,5 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion");
         }
     }
+    
 }
