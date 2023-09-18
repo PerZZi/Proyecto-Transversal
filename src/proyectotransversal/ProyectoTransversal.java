@@ -57,10 +57,22 @@ public class ProyectoTransversal {
       AlumnoData alu1=new AlumnoData();
       MateriaData mate1=new MateriaData();
       InscripcionData id=new InscripcionData();
-      Alumno ricardo=alu1.buscarAlumno(20);
-      Materia ciencia=mate1.buscarMateria(3);
-      Inscripcion ins=new Inscripcion(ricardo,ciencia,9);
-      id.guardarInscripcion(ins);
+//      Alumno ricardo=alu1.buscarAlumno(20);
+//      Materia ciencia=mate1.buscarMateria(3);
+//      Inscripcion ins=new Inscripcion(ricardo,ciencia,9);
+      AlumnoData alu2=new AlumnoData();
+      MateriaData mate2=new MateriaData();
+      InscripcionData ids=new InscripcionData();
+//      Alumno lucio=alu2.buscarAlumno(15);
+//      Materia lengua=mate2.buscarMateria(3);
+//      Inscripcion insc=new Inscripcion(lucio,lengua,8);
+//      ids.guardarInscripcion(ins);
+      
+        for (Inscripcion inscrip:id.ObtenerInscripciones()) {
+            System.out.println("id " + inscrip.getIdInscripcion());
+            System.out.println("Apellido " + inscrip.getAlumno().getApellido());
+            System.out.println("Materia " + inscrip.getMateria().getNombre());
+        }
 
     }
 }
