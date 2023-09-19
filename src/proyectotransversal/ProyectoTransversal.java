@@ -68,11 +68,11 @@ public class ProyectoTransversal {
 //      Inscripcion insc=new Inscripcion(lucio,lengua,8);
 //      ids.guardarInscripcion(ins);
       
-        for (Inscripcion inscrip:id.ObtenerInscripciones()) {
-            System.out.println("id " + inscrip.getIdInscripcion());
-            System.out.println("Apellido " + inscrip.getAlumno().getApellido());
-            System.out.println("Materia " + inscrip.getMateria().getNombre());
-        }
-
+//        for (Inscripcion inscrip:id.ObtenerInscripciones()) {
+//            System.out.println("id " + inscrip.getIdInscripcion());
+//            System.out.println("Apellido " + inscrip.getAlumno().getApellido());
+//            System.out.println("Materia " + inscrip.getMateria().getNombre());
+//        }
+id.actualizarNota(20, 3, 10);
     }
 }
