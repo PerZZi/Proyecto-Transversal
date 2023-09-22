@@ -73,6 +73,6 @@ public class ProyectoTransversal {
 //            System.out.println("Apellido " + inscrip.getAlumno().getApellido());
 //            System.out.println("Materia " + inscrip.getMateria().getNombre());
 //        }
-id.actualizarNota(20, 3, 10);
+//id.actualizarNota(20, 3, 10);
     }
 }
