@@ -5,7 +5,9 @@
  */
 package proyectotransversal.vistas;
 
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import proyectotransversal.AccesoDatos.*;
 import proyectotransversal.entidades.*;
 
@@ -17,6 +19,7 @@ public class formuDeInscripcionView extends javax.swing.JInternalFrame {
 
     private InscripcionData insdata = new InscripcionData();
     private AlumnoData aludata = new AlumnoData();
+    private DefaultTableModel modelo = new DefaultTableModel();
 
     /**
      * Creates new form formuDeInscripcionView
@@ -24,6 +27,7 @@ public class formuDeInscripcionView extends javax.swing.JInternalFrame {
     public formuDeInscripcionView() {
         initComponents();
         cargaAlumos();
+        armarCabecera();
 
     }
 
@@ -59,8 +63,18 @@ public class formuDeInscripcionView extends javax.swing.JInternalFrame {
         jLabel3.setText("Listado de Materias");
 
         jradioInscriptas.setText("Materias inscriptas");
+        jradioInscriptas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jradioInscriptasActionPerformed(evt);
+            }
+        });
 
         jradioNoInscriptas.setText("Materias no inscriptas");
+        jradioNoInscriptas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jradioNoInscriptasActionPerformed(evt);
+            }
+        });
 
         JbSalir.setText("Salir");
         JbSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -182,6 +196,22 @@ public class formuDeInscripcionView extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_JbSalirActionPerformed
 
+    private void jradioNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jradioNoInscriptasActionPerformed
+        jradioNoInscriptas.setSelected(true);
+        jradioInscriptas.setSelected(false);
+        JbAnular.setEnabled(false);
+        JbInscribir.setEnabled(true);
+        llenarTabla();
+    }//GEN-LAST:event_jradioNoInscriptasActionPerformed
+
+    private void jradioInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jradioInscriptasActionPerformed
+        jradioInscriptas.setSelected(true);
+        jradioNoInscriptas.setSelected(false);
+        JbAnular.setEnabled(true);
+        JbInscribir.setEnabled(false);
+        llenarTabla();
+    }//GEN-LAST:event_jradioInscriptasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbAnular;
@@ -201,8 +231,37 @@ public class formuDeInscripcionView extends javax.swing.JInternalFrame {
 
     private void cargaAlumos() {
         List<Alumno> alumnos = aludata.ListarAlumnos();
-        for (Alumno alu:alumnos) {
+        for (Alumno alu : alumnos) {
             jComboBox1.addItem(alu);
-        }   
+        }
+    }
+
+    private void armarCabecera() {
+        ArrayList titulos = new ArrayList();
+        titulos.add("ID");
+        titulos.add("Nombre");
+        titulos.add("Año");
+        for (Object titulo : titulos) {
+            modelo.addColumn(titulo);
+        }
+        jtMaterias.setModel(modelo);
+    }
+
+    private void llenarTabla() {
+        Alumno alumnoSeleccionado = (Alumno) jComboBox1.getSelectedItem();
+        if (jradioNoInscriptas.isSelected()) {
+
+            List<Materia> materias = insdata.obtenerMateriasNoCursadas(alumnoSeleccionado.getIdAlumno());
+            for (Materia m : materias) {
+
+                modelo.addRow(new Object[]{m.getIdMateria(), m.getNombre(), m.getAño()});
+            }
+        } else {
+            List<Materia> materias = insdata.obtenerMateriaCursada(alumnoSeleccionado.getIdAlumno());
+            for (Materia m : materias) {
+
+                modelo.addRow(new Object[]{m.getIdMateria(), m.getNombre(), m.getAño()});
+            }
+        }
     }
 }

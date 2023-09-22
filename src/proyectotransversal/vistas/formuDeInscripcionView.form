@@ -130,11 +130,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Materias inscriptas"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jradioInscriptasActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jradioNoInscriptas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Materias no inscriptas"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jradioNoInscriptasActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel2">
 
