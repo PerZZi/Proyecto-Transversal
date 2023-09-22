@@ -5,23 +5,26 @@
  */
 package proyectotransversal.vistas;
 
-import javax.swing.table.DefaultTableModel;
+import java.util.List;
+import proyectotransversal.AccesoDatos.*;
+import proyectotransversal.entidades.*;
 
 /**
  *
  * @author marce
  */
 public class formuDeInscripcionView extends javax.swing.JInternalFrame {
-private DefaultTableModel modelo=new DefaultTableModel();
-    public boolean isCellEditable (int f,int c){
-    return true;
-    }
+
+    private InscripcionData insdata = new InscripcionData();
+    private AlumnoData aludata = new AlumnoData();
+
     /**
      * Creates new form formuDeInscripcionView
      */
     public formuDeInscripcionView() {
         initComponents();
-        armarCabecera();
+        cargaAlumos();
+
     }
 
     /**
@@ -37,14 +40,14 @@ private DefaultTableModel modelo=new DefaultTableModel();
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        jradioInscriptas = new javax.swing.JRadioButton();
+        jradioNoInscriptas = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
-        jBsalir = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jBguardarInscripcion = new javax.swing.JButton();
+        JbSalir = new javax.swing.JButton();
+        JbAnular = new javax.swing.JButton();
+        JbInscribir = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTmaterias = new javax.swing.JTable();
+        jtMaterias = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -53,24 +56,22 @@ private DefaultTableModel modelo=new DefaultTableModel();
 
         jLabel2.setText("Seleccione un alumno");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel3.setText("Listado de Materias");
 
-        jRadioButton1.setText("Materias inscriptas");
+        jradioInscriptas.setText("Materias inscriptas");
 
-        jRadioButton2.setText("Materias no inscriptas");
+        jradioNoInscriptas.setText("Materias no inscriptas");
 
-        jBsalir.setText("Salir");
-        jBsalir.addActionListener(new java.awt.event.ActionListener() {
+        JbSalir.setText("Salir");
+        JbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBsalirActionPerformed(evt);
+                JbSalirActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Anular inscripcion");
+        JbAnular.setText("Anular inscripcion");
 
-        jBguardarInscripcion.setText("Inscribir");
+        JbInscribir.setText("Inscribir");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -78,11 +79,11 @@ private DefaultTableModel modelo=new DefaultTableModel();
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jBguardarInscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JbInscribir, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
-                .addComponent(jButton1)
+                .addComponent(JbAnular)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
         jPanel2Layout.setVerticalGroup(
@@ -90,12 +91,12 @@ private DefaultTableModel modelo=new DefaultTableModel();
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 12, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jBsalir)
-                    .addComponent(jBguardarInscripcion)))
+                    .addComponent(JbAnular)
+                    .addComponent(JbSalir)
+                    .addComponent(JbInscribir)))
         );
 
-        jTmaterias.setModel(new javax.swing.table.DefaultTableModel(
+        jtMaterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -106,7 +107,7 @@ private DefaultTableModel modelo=new DefaultTableModel();
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTmaterias);
+        jScrollPane2.setViewportView(jtMaterias);
 
         jLabel1.setText("Formulario de inscripcion");
 
@@ -125,9 +126,9 @@ private DefaultTableModel modelo=new DefaultTableModel();
                             .addContainerGap()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jRadioButton1)
+                                    .addComponent(jradioInscriptas)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jRadioButton2))
+                                    .addComponent(jradioNoInscriptas))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel2)
                                     .addGap(27, 27, 27)
@@ -152,8 +153,8 @@ private DefaultTableModel modelo=new DefaultTableModel();
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(jradioInscriptas)
+                    .addComponent(jradioNoInscriptas))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -176,32 +177,32 @@ private DefaultTableModel modelo=new DefaultTableModel();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
+    private void JbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbSalirActionPerformed
         // TODO add your handling code here:
         dispose();
-    }//GEN-LAST:event_jBsalirActionPerformed
+    }//GEN-LAST:event_JbSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBguardarInscripcion;
-    private javax.swing.JButton jBsalir;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton JbAnular;
+    private javax.swing.JButton JbInscribir;
+    private javax.swing.JButton JbSalir;
+    private javax.swing.JComboBox<Alumno> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTmaterias;
+    private javax.swing.JRadioButton jradioInscriptas;
+    private javax.swing.JRadioButton jradioNoInscriptas;
+    private javax.swing.JTable jtMaterias;
     // End of variables declaration//GEN-END:variables
-private void armarCabecera(){
-modelo.addColumn("ID");
-modelo.addColumn("Nombre");
-modelo.addColumn("Año");
-jTmaterias.setModel(modelo);
-}
-}
 
+    private void cargaAlumos() {
+        List<Alumno> alumnos = aludata.ListarAlumnos();
+        for (Alumno alu:alumnos) {
+            jComboBox1.addItem(alu);
+        }   
+    }
+}

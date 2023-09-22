@@ -85,6 +85,11 @@ public class ProyectoTransversalView extends javax.swing.JFrame {
         jMenuBar1.add(jMformuMateria);
 
         jMenu3.setText("Administracion");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
 
         jMformuInscripciones.setText("Inscripcciones");
         jMformuInscripciones.addActionListener(new java.awt.event.ActionListener() {
@@ -164,10 +169,9 @@ public class ProyectoTransversalView extends javax.swing.JFrame {
         // activa ventana formulario inscripcciones
         escritorio.removeAll();
         escritorio.repaint();
-        formuDeInscripcionView gdi=new formuDeInscripcionView();
-        gdi.setVisible(true);
-        escritorio.add(gdi);
-        escritorio.moveToFront(gdi);
+        formuDeInscripcionView ins=new formuDeInscripcionView();
+        ins.setVisible(true);
+        escritorio.add(ins);
     }//GEN-LAST:event_jMformuInscripcionesActionPerformed
 
     private void jMSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSalirActionPerformed
@@ -204,6 +208,10 @@ public class ProyectoTransversalView extends javax.swing.JFrame {
         escritorio.add(axm);
         escritorio.moveToFront(axm);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu3ActionPerformed
 
     /**
      * @param args the command line arguments
