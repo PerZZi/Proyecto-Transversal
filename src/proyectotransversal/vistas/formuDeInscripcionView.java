@@ -7,6 +7,7 @@ package proyectotransversal.vistas;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyectotransversal.AccesoDatos.*;
 import proyectotransversal.entidades.*;
@@ -17,15 +18,24 @@ import proyectotransversal.entidades.*;
  */
 public class formuDeInscripcionView extends javax.swing.JInternalFrame {
 
-    private InscripcionData insdata = new InscripcionData();
-    private AlumnoData aludata = new AlumnoData();
-    private DefaultTableModel modelo = new DefaultTableModel();
+    private List<Materia> listaMaterias;
+    private List<Alumno> listaAlumnos;
+
+    private InscripcionData insdata;
+    private AlumnoData aludata;
+    private DefaultTableModel modelo;
 
     /**
      * Creates new form formuDeInscripcionView
      */
     public formuDeInscripcionView() {
         initComponents();
+
+        aludata = new AlumnoData();
+        listaAlumnos = aludata.ListarAlumnos();
+        insdata = new InscripcionData();
+        modelo = new DefaultTableModel();
+
         cargaAlumos();
         armarCabecera();
 
@@ -84,8 +94,20 @@ public class formuDeInscripcionView extends javax.swing.JInternalFrame {
         });
 
         JbAnular.setText("Anular inscripcion");
+        JbAnular.setEnabled(false);
+        JbAnular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbAnularActionPerformed(evt);
+            }
+        });
 
         JbInscribir.setText("Inscribir");
+        JbInscribir.setEnabled(false);
+        JbInscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbInscribirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -197,20 +219,53 @@ public class formuDeInscripcionView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JbSalirActionPerformed
 
     private void jradioNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jradioNoInscriptasActionPerformed
-        jradioNoInscriptas.setSelected(true);
+
+        borrarFila();
         jradioInscriptas.setSelected(false);
+        cargaDatosNoInscriptas();
         JbAnular.setEnabled(false);
         JbInscribir.setEnabled(true);
-        llenarTabla();
     }//GEN-LAST:event_jradioNoInscriptasActionPerformed
 
     private void jradioInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jradioInscriptasActionPerformed
-        jradioInscriptas.setSelected(true);
+
+        borrarFila();
         jradioNoInscriptas.setSelected(false);
+        cargaDatosInscriptas();
         JbAnular.setEnabled(true);
         JbInscribir.setEnabled(false);
-        llenarTabla();
     }//GEN-LAST:event_jradioInscriptasActionPerformed
+
+    private void JbInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbInscribirActionPerformed
+
+        int filaSelec = jtMaterias.getSelectedRow();
+        if (filaSelec != -1) {
+
+            Alumno alumnoSeleccionado = (Alumno) jComboBox1.getSelectedItem();
+
+            int idMateria = (Integer) modelo.getValueAt(filaSelec, 0);
+            String nombreMateria = (String) modelo.getValueAt(filaSelec, 1);
+            int año = (Integer) modelo.getValueAt(filaSelec, 2);
+            Materia m = new Materia(idMateria, nombreMateria, año, true);
+
+            Inscripcion i = new Inscripcion(alumnoSeleccionado, m, 0);
+            insdata.guardarInscripcion(i);
+            borrarFila();
+        }
+    }//GEN-LAST:event_JbInscribirActionPerformed
+
+    private void JbAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbAnularActionPerformed
+
+        int filaSelec = jtMaterias.getSelectedRow();
+        if (filaSelec != -1) {
+
+            Alumno alumnoSeleccionado = (Alumno) jComboBox1.getSelectedItem();
+            int idMateria = (Integer) modelo.getValueAt(filaSelec, 0);
+           
+            insdata.borrarInscripcionMateriaAlumno(alumnoSeleccionado.getIdAlumno(), idMateria);
+            borrarFila();
+        }
+    }//GEN-LAST:event_JbAnularActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -230,14 +285,13 @@ public class formuDeInscripcionView extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargaAlumos() {
-        List<Alumno> alumnos = aludata.ListarAlumnos();
-        for (Alumno alu : alumnos) {
+        for (Alumno alu : listaAlumnos) {
             jComboBox1.addItem(alu);
         }
     }
 
     private void armarCabecera() {
-        ArrayList titulos = new ArrayList();
+        ArrayList<Object> titulos = new ArrayList();
         titulos.add("ID");
         titulos.add("Nombre");
         titulos.add("Año");
@@ -247,21 +301,26 @@ public class formuDeInscripcionView extends javax.swing.JInternalFrame {
         jtMaterias.setModel(modelo);
     }
 
-    private void llenarTabla() {
-        Alumno alumnoSeleccionado = (Alumno) jComboBox1.getSelectedItem();
-        if (jradioNoInscriptas.isSelected()) {
+    private void borrarFila() {
+        int fila = modelo.getRowCount() - 1;
+        for (int i = fila; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
+    }
 
-            List<Materia> materias = insdata.obtenerMateriasNoCursadas(alumnoSeleccionado.getIdAlumno());
-            for (Materia m : materias) {
+    private void cargaDatosNoInscriptas() {
+        Alumno selec = (Alumno) jComboBox1.getSelectedItem();
+        listaMaterias = insdata.obtenerMateriasNoCursadas(selec.getIdAlumno());
+        for (Materia m : listaMaterias) {
+            modelo.addRow(new Object[]{m.getIdMateria(), m.getNombre(), m.getAño()});
+        }
+    }
 
-                modelo.addRow(new Object[]{m.getIdMateria(), m.getNombre(), m.getAño()});
-            }
-        } else {
-            List<Materia> materias = insdata.obtenerMateriaCursada(alumnoSeleccionado.getIdAlumno());
-            for (Materia m : materias) {
-
-                modelo.addRow(new Object[]{m.getIdMateria(), m.getNombre(), m.getAño()});
-            }
+    private void cargaDatosInscriptas() {
+        Alumno selec = (Alumno) jComboBox1.getSelectedItem();
+        List<Materia> lista = (ArrayList) insdata.obtenerMateriaCursada(selec.getIdAlumno());
+        for (Materia m : lista) {
+            modelo.addRow(new Object[]{m.getIdMateria(), m.getNombre(), m.getAño()});
         }
     }
 }

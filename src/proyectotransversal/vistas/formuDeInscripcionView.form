@@ -183,12 +183,20 @@
             <Component class="javax.swing.JButton" name="JbAnular">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Anular inscripcion"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbAnularActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="JbInscribir">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Inscribir"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbInscribirActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
