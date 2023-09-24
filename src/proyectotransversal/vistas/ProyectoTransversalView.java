@@ -52,9 +52,10 @@ public class ProyectoTransversalView extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 419, Short.MAX_VALUE)
+            .addGap(0, 406, Short.MAX_VALUE)
         );
 
+        jMformuAlumno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectotransversal/IconosImagenes/graduado (1).png"))); // NOI18N
         jMformuAlumno.setText("Alumno");
 
         jMalumno.setText("Formulario de Alumno");
@@ -67,6 +68,7 @@ public class ProyectoTransversalView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMformuAlumno);
 
+        jMformuMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectotransversal/IconosImagenes/libro (1).png"))); // NOI18N
         jMformuMateria.setText("Materia");
         jMformuMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +86,7 @@ public class ProyectoTransversalView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMformuMateria);
 
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectotransversal/IconosImagenes/administracion.png"))); // NOI18N
         jMenu3.setText("Administracion");
         jMenu3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +112,7 @@ public class ProyectoTransversalView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectotransversal/IconosImagenes/consulta.png"))); // NOI18N
         jMenu4.setText("Consultas");
 
         jMenuItem5.setText("Alumnos por Materia");
@@ -121,6 +125,7 @@ public class ProyectoTransversalView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
+        jMSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectotransversal/IconosImagenes/cerrar-sesion.png"))); // NOI18N
         jMSalir.setText("Salir");
         jMSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,7 +144,7 @@ public class ProyectoTransversalView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
+            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
         );
 
         pack();
