@@ -172,7 +172,7 @@ public class InscripcionData {
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
-            ps.setInt(2, idAlumno);
+            ps.setInt(2, idMateria);
 
             int borradas = ps.executeUpdate();
             if (borradas > 0) {
