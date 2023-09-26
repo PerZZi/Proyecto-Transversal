@@ -73,19 +73,19 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jRestado" min="-2" max="-2" attributes="0"/>
+                          <Component id="jrEstado" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jTFidMateria" min="-2" pref="85" max="-2" attributes="0"/>
+                                  <Component id="jtMateria" min="-2" pref="85" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jBbuscar" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jTFaño" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
-                              <Component id="jTFnombre" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
+                              <Component id="jtAño" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
+                              <Component id="jtNombre" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -99,24 +99,24 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                          <Component id="jTFidMateria" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtMateria" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jBbuscar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTFnombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTFaño" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtAño" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jRestado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jrEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="49" max="32767" attributes="0"/>
               </Group>
@@ -144,13 +144,13 @@
             <Property name="text" type="java.lang.String" value="Estado:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTFidMateria">
+        <Component class="javax.swing.JTextField" name="jtMateria">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTFnombre">
+        <Component class="javax.swing.JTextField" name="jtNombre">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTFa&#xf1;o">
+        <Component class="javax.swing.JTextField" name="jtA&#xf1;o">
         </Component>
-        <Component class="javax.swing.JRadioButton" name="jRestado">
+        <Component class="javax.swing.JRadioButton" name="jrEstado">
           <Properties>
             <Property name="text" type="java.lang.String" value="Activo"/>
           </Properties>
@@ -159,6 +159,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBbuscarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -198,16 +201,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Nuevo"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBnuevaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBeliminar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBeliminarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBguardar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBguardarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBsalir">
           <Properties>

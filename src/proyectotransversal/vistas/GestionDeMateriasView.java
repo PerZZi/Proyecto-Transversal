@@ -5,15 +5,19 @@
  */
 package proyectotransversal.vistas;
 
+import javax.swing.JOptionPane;
+import proyectotransversal.AccesoDatos.MateriaData;
+import proyectotransversal.entidades.Materia;
+
 /**
  *
  * @author marce
  */
 public class GestionDeMateriasView extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form GestionDeMateriasView
-     */
+    private MateriaData mateData = new MateriaData();
+    private Materia materiaActual = null;
+
     public GestionDeMateriasView() {
         initComponents();
     }
@@ -33,10 +37,10 @@ public class GestionDeMateriasView extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTFidMateria = new javax.swing.JTextField();
-        jTFnombre = new javax.swing.JTextField();
-        jTFaño = new javax.swing.JTextField();
-        jRestado = new javax.swing.JRadioButton();
+        jtMateria = new javax.swing.JTextField();
+        jtNombre = new javax.swing.JTextField();
+        jtAño = new javax.swing.JTextField();
+        jrEstado = new javax.swing.JRadioButton();
         jBbuscar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jBnueva = new javax.swing.JButton();
@@ -58,9 +62,14 @@ public class GestionDeMateriasView extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Estado:");
 
-        jRestado.setText("Activo");
+        jrEstado.setText("Activo");
 
         jBbuscar.setText("Buscar");
+        jBbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBbuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -76,17 +85,17 @@ public class GestionDeMateriasView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRestado)
+                        .addComponent(jrEstado)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTFidMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jBbuscar))
-                            .addComponent(jTFaño, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTFnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jtAño, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,28 +104,43 @@ public class GestionDeMateriasView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTFidMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jBbuscar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTFnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTFaño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jRestado))
+                    .addComponent(jrEstado))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
         jBnueva.setText("Nuevo");
+        jBnueva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBnuevaActionPerformed(evt);
+            }
+        });
 
         jBeliminar.setText("Eliminar");
+        jBeliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBeliminarActionPerformed(evt);
+            }
+        });
 
         jBguardar.setText("Guardar");
+        jBguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBguardarActionPerformed(evt);
+            }
+        });
 
         jBsalir.setText("Salir");
         jBsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -181,6 +205,59 @@ public class GestionDeMateriasView extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jBsalirActionPerformed
 
+    private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
+
+        try {
+            Integer codigo = Integer.parseInt(jtMateria.getText());
+            materiaActual = mateData.buscarMateria(codigo);
+            if (materiaActual != null) {
+                jtNombre.setText(materiaActual.getNombre());
+                jtAño.setText("" + materiaActual.getAño());
+                jrEstado.setSelected(materiaActual.isEstado());
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Ingrese un codigo valido");
+        }
+    }//GEN-LAST:event_jBbuscarActionPerformed
+
+    private void jBnuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevaActionPerformed
+        limpiarCampos();
+        materiaActual = null;
+    }//GEN-LAST:event_jBnuevaActionPerformed
+
+    private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
+
+        if (materiaActual != null) {
+            mateData.eliminarMateria(materiaActual.getIdMateria());
+            materiaActual = null;
+            limpiarCampos();
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una materia");
+        }
+    }//GEN-LAST:event_jBeliminarActionPerformed
+
+    private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
+
+        try {
+            String nombre = jtNombre.getText();
+            Integer año = Integer.parseInt(jtAño.getText());
+            if (nombre.isEmpty() || año == null || año == 0) {
+                JOptionPane.showMessageDialog(null, "No puede haber campos vacios");
+                return;
+                
+            }
+            Boolean estado= jrEstado.isSelected();
+        }
+    }//GEN-LAST:event_jBguardarActionPerformed
+
+    private void limpiarCampos() {
+        jtMateria.setText("");
+        jtNombre.setText("");
+        jtAño.setText("");
+        jrEstado.setSelected(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBbuscar;
@@ -195,9 +272,9 @@ public class GestionDeMateriasView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRestado;
-    private javax.swing.JTextField jTFaño;
-    private javax.swing.JTextField jTFidMateria;
-    private javax.swing.JTextField jTFnombre;
+    private javax.swing.JRadioButton jrEstado;
+    private javax.swing.JTextField jtAño;
+    private javax.swing.JTextField jtMateria;
+    private javax.swing.JTextField jtNombre;
     // End of variables declaration//GEN-END:variables
 }
