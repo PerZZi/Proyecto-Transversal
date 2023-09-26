@@ -5,19 +5,28 @@
  */
 package proyectotransversal.vistas;
 
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import proyectotransversal.AccesoDatos.*;
+import proyectotransversal.entidades.*;
 
 /**
  *
  * @author marce
  */
 public class alumnosXmateriaView extends javax.swing.JInternalFrame {
+    
+private MateriaData mateData = new MateriaData();  
+private AlumnoData aluData = new AlumnoData();
 private DefaultTableModel modelo = new DefaultTableModel ();
     /**
      * Creates new form alumnosXmateriaView
      */
     public alumnosXmateriaView() {
         initComponents();
+        cargarMateria();
+        
+        
         armarCabecera();
     }
 
@@ -46,7 +55,11 @@ private DefaultTableModel modelo = new DefaultTableModel ();
 
         jLabel2.setText("Seleccione una materia");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -145,10 +158,14 @@ private DefaultTableModel modelo = new DefaultTableModel ();
         dispose();
     }//GEN-LAST:event_jBsalirActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBsalir;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Materia> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -163,4 +180,12 @@ private void armarCabecera(){
     modelo.addColumn("Nota");
     jTalumnosXmateria.setModel(modelo);
 }
+
+    private void cargarMateria() {
+       List<Materia> materias = mateData.ListarMaterias();
+       for (Materia mate : materias) {
+            jComboBox1.addItem(mate);
+        }
+
+    }
 }
