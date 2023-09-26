@@ -249,6 +249,16 @@ public class GestionDeMateriasView extends javax.swing.JInternalFrame {
                 
             }
             Boolean estado= jrEstado.isSelected();
+            if(materiaActual==null){
+                JOptionPane.showMessageDialog(null, "Materia guardada");
+                
+            }else{
+                materiaActual.setNombre(nombre);
+                materiaActual.setAño(año);
+                mateData.modificarMateria(materiaActual);
+            }
+        }catch(){
+            
         }
     }//GEN-LAST:event_jBguardarActionPerformed
 
