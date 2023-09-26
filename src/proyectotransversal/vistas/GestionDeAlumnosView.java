@@ -116,6 +116,7 @@ public class GestionDeAlumnosView extends javax.swing.JInternalFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
+        jBbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectotransversal/IconosImagenes/buscar .png"))); // NOI18N
         jBbuscar.setText("Buscar");
         jBbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

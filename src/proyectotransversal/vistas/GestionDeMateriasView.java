@@ -64,6 +64,7 @@ public class GestionDeMateriasView extends javax.swing.JInternalFrame {
 
         jrEstado.setText("Activo");
 
+        jBbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectotransversal/IconosImagenes/buscar .png"))); // NOI18N
         jBbuscar.setText("Buscar");
         jBbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,6 +129,7 @@ public class GestionDeMateriasView extends javax.swing.JInternalFrame {
             }
         });
 
+        jBeliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectotransversal/IconosImagenes/eliminarMateria.png"))); // NOI18N
         jBeliminar.setText("Eliminar");
         jBeliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,6 +137,7 @@ public class GestionDeMateriasView extends javax.swing.JInternalFrame {
             }
         });
 
+        jBguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectotransversal/IconosImagenes/guardarMateria.png"))); // NOI18N
         jBguardar.setText("Guardar");
         jBguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,25 +246,29 @@ public class GestionDeMateriasView extends javax.swing.JInternalFrame {
         try {
             String nombre = jtNombre.getText();
             Integer año = Integer.parseInt(jtAño.getText());
-            if (nombre.isEmpty() || año == null || año == 0) {
-                JOptionPane.showMessageDialog(null, "No puede haber campos vacios");
-                return;
-                
+            Boolean estado = jrEstado.isSelected();
+
+            // Verificar si materiaActual está inicializado
+            if (materiaActual == null) {
+                materiaActual = new Materia(); // Inicializar materiaActual si es null
             }
-            Boolean estado= jrEstado.isSelected();
-            if(materiaActual==null){
+
+            // Asignar los valores a materiaActual
+            materiaActual.setNombre(nombre);
+            materiaActual.setAño(año);
+            materiaActual.setEstado(estado);
+
+            
+            if (nombre.length() < 1 || año < 1) {
+                JOptionPane.showMessageDialog(null, "Nombre/Año incorrectos");
+            } else {
+                mateData.guardarMateria(materiaActual);
                 JOptionPane.showMessageDialog(null, "Materia guardada");
-                
-            }else{
-                materiaActual.setNombre(nombre);
-                materiaActual.setAño(año);
-                mateData.modificarMateria(materiaActual);
-                JOptionPane.showMessageDialog(null, "Materia modificada");
             }
-        }catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(null, "Ingrese un año valido");
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Ocurrió un error: " + ex.getMessage());
+
+            limpiarCampos();
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Ingrese un año válido");
         }
     }//GEN-LAST:event_jBguardarActionPerformed
 
