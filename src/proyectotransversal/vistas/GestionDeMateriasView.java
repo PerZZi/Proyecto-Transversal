@@ -256,9 +256,12 @@ public class GestionDeMateriasView extends javax.swing.JInternalFrame {
                 materiaActual.setNombre(nombre);
                 materiaActual.setAño(año);
                 mateData.modificarMateria(materiaActual);
+                JOptionPane.showMessageDialog(null, "Materia modificada");
             }
-        }catch(){
-            
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Ingrese un año valido");
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Ocurrió un error: " + ex.getMessage());
         }
     }//GEN-LAST:event_jBguardarActionPerformed
 
