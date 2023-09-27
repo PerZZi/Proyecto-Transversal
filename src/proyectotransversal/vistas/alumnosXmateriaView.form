@@ -160,6 +160,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="jBsalir">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/proyectotransversal/IconosImagenes/salir-de-pantalla-completa.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
       <Events>

@@ -107,6 +107,7 @@ public class alumnosXmateriaView extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTalumnosXmateria);
 
+        jBsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectotransversal/IconosImagenes/salir-de-pantalla-completa.png"))); // NOI18N
         jBsalir.setText("Salir");
         jBsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,4 +213,5 @@ private void borrarFila(){
         }
 
     }
+    
 }

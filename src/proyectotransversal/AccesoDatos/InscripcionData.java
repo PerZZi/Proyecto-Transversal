@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.mariadb.jdbc.Statement;
 import proyectotransversal.entidades.Alumno;
+import proyectotransversal.AccesoDatos.AlumnoData;
 import proyectotransversal.entidades.Inscripcion;
 import proyectotransversal.entidades.Materia;
 
@@ -214,17 +215,17 @@ public class InscripcionData {
 
     public List<Alumno> obtenerAlumnosXmateria(int idMateria) {
         List<Alumno> alumnos = new ArrayList<>();
-        String sql = "SELECT * FROM alumno WHERE idMateria = ?";
+        String sql = "SELECT * FROM inscripcion WHERE idMateria =?";
 
+        AlumnoData alu=new AlumnoData();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idMateria);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 Alumno alumno = new Alumno();
-                alumno.setIdAlumno(rs.getInt("id"));
-                alumno.setNombre(rs.getString("nombre"));
-                alumno.setApellido(rs.getString("apellido"));
+                alumno= alu.buscarAlumno(rs.getInt("idAlumno"));
                 alumnos.add(alumno);
             }
 
