@@ -5,7 +5,6 @@
  */
 package proyectotransversal.vistas;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import proyectotransversal.AccesoDatos.*;
@@ -19,8 +18,7 @@ public class alumnosXmateriaView extends javax.swing.JInternalFrame {
     
 private MateriaData mateData = new MateriaData();  
 private AlumnoData aluData = new AlumnoData();
-private InscripcionData insData = new InscripcionData();
-private DefaultTableModel modelo = new DefaultTableModel();
+private DefaultTableModel modelo = new DefaultTableModel ();
     /**
      * Creates new form alumnosXmateriaView
      */
@@ -190,6 +188,4 @@ private void armarCabecera(){
         }
 
     }
-    
-    
 }
