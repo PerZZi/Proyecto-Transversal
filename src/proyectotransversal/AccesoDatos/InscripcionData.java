@@ -214,7 +214,7 @@ public class InscripcionData {
 
     public List<Alumno> obtenerAlumnosXmateria(int idMateria) {
         List<Alumno> alumnos = new ArrayList<>();
-        String sql = "SELECT * FROM alumnos WHERE idMateria = ?";
+        String sql = "SELECT * FROM alumno WHERE idMateria = ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);

@@ -15,19 +15,22 @@ import proyectotransversal.entidades.*;
  * @author marce
  */
 public class alumnosXmateriaView extends javax.swing.JInternalFrame {
-    
-private MateriaData mateData = new MateriaData();  
-private AlumnoData aluData = new AlumnoData();
-private DefaultTableModel modelo = new DefaultTableModel ();
+
+    private MateriaData mateData = new MateriaData();
+    private AlumnoData aluData = new AlumnoData();
+    private InscripcionData ins = new InscripcionData();
+
+    DefaultTableModel tabla = new DefaultTableModel();
+//    public boolean isCellEditable(int fila, int columna)
+//            return false;
+
     /**
      * Creates new form alumnosXmateriaView
      */
     public alumnosXmateriaView() {
         initComponents();
-        cargarMateria();
-        
-        
         armarCabecera();
+        cargarCombo();
     }
 
     /**
@@ -159,7 +162,20 @@ private DefaultTableModel modelo = new DefaultTableModel ();
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+
+        Materia mateSelec = (Materia) jComboBox1.getSelectedItem();
+        int materia = mateSelec.getIdMateria();
+
+        List<Alumno> alumnoXm = ins.obtenerAlumnosXmateria(materia);
+        System.out.println(alumnoXm);
+
+        for (Alumno m : alumnoXm) {
+            tabla.addRow(new Object[]{
+                m.getIdAlumno(),
+                m.getDni(),
+                m.getApellido(),
+                m.getNombre()});
+        }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
@@ -173,17 +189,25 @@ private DefaultTableModel modelo = new DefaultTableModel ();
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTalumnosXmateria;
     // End of variables declaration//GEN-END:variables
-private void armarCabecera(){
+private void armarCabecera() {
 
-    modelo.addColumn("Codigo");
-    modelo.addColumn("Nombre");
-    modelo.addColumn("Nota");
-    jTalumnosXmateria.setModel(modelo);
+        tabla.addColumn("idAlumno");
+        tabla.addColumn("dni");
+        tabla.addColumn("Apellido");
+        tabla.addColumn("Nombre");
+        jTalumnosXmateria.setModel(tabla);
+    }
+
+private void borrarFila(){
+    int fila=jTalumnosXmateria.getRowCount() -1;
+    for (int f=fila; f>=0; f--) {
+        tabla.removeRow(f);
+    }
 }
 
-    private void cargarMateria() {
-       List<Materia> materias = mateData.ListarMaterias();
-       for (Materia mate : materias) {
+    private void cargarCombo() {
+        List<Materia> materias = mateData.ListarMaterias();
+        for (Materia mate : materias) {
             jComboBox1.addItem(mate);
         }
 
