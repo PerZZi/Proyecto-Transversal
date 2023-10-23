@@ -165,42 +165,20 @@ public class CargaDeNotasView extends javax.swing.JInternalFrame {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
+
         // Obtiene el alumno seleccionado
         Alumno selec = (Alumno) jCBalumnos.getSelectedItem();
-
-        // Consulta las materias en las que está inscrito el alumno
-        List<Materia> anotado = insdata.obtenerMateriaCursada(selec.getIdAlumno());
-        
-        // Se obtiene una lista con la nota
-        List<Inscripcion> notas=insdata.ObtenerInscripciones();
         
         // Verifica si el alumno tiene materias cursadas
-        if (anotado.isEmpty()) {
+        if (!selec.isActivo()) {
             
             JOptionPane.showMessageDialog(this, "El alumno seleccionado no tiene materias cursadas.");
             return;
         }
         
-        for (Materia m : anotado) {
-           
-           // Busca la inscripción correspondiente a la materia actual
-    Inscripcion inscripcionCorrespondiente = null;
-    for (Inscripcion inscripcion : notas) {
-        if (inscripcion.getMateria().equals(m)) {
-            inscripcionCorrespondiente = inscripcion;
-            break;
-                }
-            }
-    
-    // Verifica si se encontró una inscripción correspondiente
-    if (inscripcionCorrespondiente != null) {
-        // Pide la nota de la inscripción y la agrega a la tabla
-        double nota = inscripcionCorrespondiente.getNota();
-        modelo.addRow(new Object[]{m.getIdMateria(), m.getNombre(), nota});
-    } else {
-        // Si no se encontró una inscripción correspondiente, agrega un valor predeterminado
-        modelo.addRow(new Object[]{m.getIdMateria(), m.getNombre(), 0.0}); // Cambia 0.0 por el valor predeterminado que desees
-    }
+        // Si la tabla tiene filas, procede a listar las notas
+        if (modelo.getRowCount() > 0) {
+            listarNotas();
         }
     
     }//GEN-LAST:event_jCBalumnosActionPerformed
@@ -295,11 +273,12 @@ private void cargaAlumnos() {
     }
     
     private void editarColumna(String columna, double valorActual, double valorNuevo) {
-
-        // Obtiene todas las filas de la tabla
-        int filas = jTnotas.getRowCount();
+    // Obtiene todas las filas de la tabla
+    int filaSeleccionada = jTnotas.getRowCount();
+    
+    if (filaSeleccionada != -1) { // Verificar si la tabla tiene filas
         // Recorre todas las filas
-        for (int i = 0; i < filas; i++) {
+        for (int i = 0; i < filaSeleccionada; i++) {
             // Obtiene el valor de la columna actual en la fila actual
             double valorActualFila = (double) jTnotas.getValueAt(i, jTnotas.getColumnModel().getColumnIndex(columna));
 
@@ -310,6 +289,7 @@ private void cargaAlumnos() {
             }
         }
     }
+}
     
     private int IdMateriaPorNombre(String nombreMateria){
     List<Materia> materias = materiaData.ListarMaterias();
